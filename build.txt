@@ -1,7 +1,7 @@
 ﻿displayName = No Breaking Doors
 author = Snek
-version = 1.0.0.0
-homepage = https://forums.terraria.org/index.php?threads/no-snow-litter.106005/
+version = 1.0.0.1
+homepage = https://forums.terraria.org/index.php?threads/no-breaking-doors.106863/
 hideCode = false
 hideResources = false
 includeSource = true
