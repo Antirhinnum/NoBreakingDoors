@@ -1,0 +1,4 @@
+﻿A simple mod that prevents Goblin Peons from breaking down doors. That's it.
+
+Changelog:
+ - 1.0.0.0: Release
