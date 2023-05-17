@@ -1,0 +1,11 @@
+﻿Mods.NoBreakingDoors:
+{
+	Config:
+	{
+		StopOpeningDoors:
+		{
+			Label: "Also Stop Opening Doors"
+			Tooltip: "Stop all enemies from opening doors."
+		}
+	}
+}

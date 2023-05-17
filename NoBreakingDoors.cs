@@ -1,11 +1,7 @@
 ﻿using Terraria.ModLoader;
 
-namespace NoBreakingDoors
+namespace NoBreakingDoors;
+
+public sealed class NoBreakingDoors : Mod
 {
-	public class NoBreakingDoors : Mod
-	{
-		public NoBreakingDoors()
-		{
-		}
-	}
 }

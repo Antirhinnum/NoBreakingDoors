@@ -1,9 +1,8 @@
 ﻿displayName = No Breaking Doors
 author = Snek
-version = 1.1.0.0
-homepage = https://forums.terraria.org/index.php?threads/no-breaking-doors.106863/
-hideCode = false
-hideResources = false
-includeSource = true
-buildIgnore = build.txt, ./*, bin/*, obj/*, Properties/*, LICENSE, README.md, .gitattributes, .gitignore
+version = 1.1.1
+homepage = https://github.com/Antirhinnum/NoBreakingDoors
+hideCode = true
+hideResources = true
+includeSource = false
 includePDB = true

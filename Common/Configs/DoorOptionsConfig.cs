@@ -1,14 +1,14 @@
 ﻿using System.ComponentModel;
 using Terraria.ModLoader.Config;
 
-namespace NoBreakingDoors.Common.Configs
-{
-	public class DoorOptionsConfig : ModConfig
-	{
-		public override ConfigScope Mode => ConfigScope.ServerSide;
+namespace NoBreakingDoors.Common.Configs;
 
-		[DefaultValue(true)]
-		[Tooltip("Stop all enemies from opening doors.")]
-		public bool StopOpeningDoors { get; set; }
-	}
+public sealed class DoorOptionsConfig : ModConfig
+{
+	public override ConfigScope Mode => ConfigScope.ServerSide;
+
+	[DefaultValue(true)]
+	[Label("$Mods.NoBreakingDoors.Config.StopOpeningDoors.Label")]
+	[Tooltip("$Mods.NoBreakingDoors.Config.StopOpeningDoors.Tooltip")]
+	public bool StopOpeningDoors { get; set; }
 }
