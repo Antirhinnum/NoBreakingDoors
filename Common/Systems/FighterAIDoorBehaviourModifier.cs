@@ -5,7 +5,6 @@ using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using static Humanizer.In;
 
 namespace NoBreakingDoors.Common.Systems;
 
@@ -13,7 +12,7 @@ public sealed class FighterAIDoorBehaviourModifier : ModSystem
 {
 	public override void Load()
 	{
-		IL.Terraria.NPC.AI_003_Fighters += PreventDoorInteractions;
+		IL_NPC.AI_003_Fighters += PreventDoorInteractions;
 	}
 
 	/// <summary>

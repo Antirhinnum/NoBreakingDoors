@@ -1,11 +1,14 @@
-﻿Mods.NoBreakingDoors:
-{
-	Config:
-	{
-		StopOpeningDoors:
-		{
-			Label: "Also Stop Opening Doors"
-			Tooltip: "Stop all enemies from opening doors."
+Mods: {
+	NoBreakingDoors: {
+		Configs: {
+			DoorOptionsConfig: {
+				DisplayName: Door Options Config
+
+				StopOpeningDoors: {
+					Label: Also Stop Opening Doors
+					Tooltip: Stop all enemies from opening doors.
+				}
+			}
 		}
 	}
 }
