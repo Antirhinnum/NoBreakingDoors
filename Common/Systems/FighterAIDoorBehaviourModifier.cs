@@ -60,23 +60,29 @@ public sealed class FighterAIDoorBehaviourModifier : ModSystem
 			throw new Exception("Unable to patch Terraria.NPC.AI_003_Fighters: Could not match IL (Finding Local Index).");
 		}
 
-		// Use the index from above to match the block of code
-		if (!c.TryGotoNext(MoveType.Before,
-				i => i.MatchLdloc(localIndex),
-				i => i.MatchNop(),
-				i => i.MatchNop(),
-				i => i.MatchAnd(),
-				i => i.MatchBrfalse(out _)
-				))
+		// Match (C#):
+		//	WorldGen.KillTile(num194, num195 - 1, fail: true);
+		// Change to:
+		//	WorldGen.KillTile(num194, num195 - 1, fail: true);
+		//	LOCAL &= !ModContent.GetInstance<DoorOptionsConfig>().StopOpeningDoors;
+		// LOCAL is whether any NPC should try hitting doors. By and-ing the config option, NPCs won't hit doors if they're disallwoed by this mod.
+		if (!c.TryGotoNext(MoveType.After,
+			// Match the five params for KillTile
+			i => true,
+			i => true,
+			i => true,
+			i => true,
+			i => true,
+			i => i.MatchCall<WorldGen>(nameof(WorldGen.KillTile))
+		))
 		{
-			throw new Exception("Unable to patch Terraria.NPC.AI_003_Fighters: Could not match IL (Opening Door Change).");
+			throw new Exception("Unable to patch Terraria.NPC.AI_003_Fighters: Could not match IL (Finding Local Index).");
 		}
 
-		// Move onto the AND instruction, then push !StopOpeningDoors.
-		// AND the current value and !StopOpeningDoors
-		c.Index += 4;
+		c.Emit(OpCodes.Ldloc, localIndex);
 		c.EmitDelegate(() => !ModContent.GetInstance<DoorOptionsConfig>().StopOpeningDoors);
 		c.Emit(OpCodes.And);
+		c.Emit(OpCodes.Stloc, localIndex);
 
 		#endregion Opening Door Change
 
@@ -101,10 +107,12 @@ public sealed class FighterAIDoorBehaviourModifier : ModSystem
 		// Move the cursor to the instruction loading the Goblin Peon's ID (26).
 		c.Index += 2;
 
-		// Replace 26 with int.MinValue. The code now checks if npc.type == int.MinValue.
-		c.Remove();
-		c.Emit(OpCodes.Ldc_I4, int.MinValue);
+		// Replace 26 with NPCID.None. The code now checks if npc.type == NPCID.None.
+		// The OpCode here is ldc.i4.s, so I'm constrained to the range of an sbyte.
+		c.Next.Operand = NPCID.None;
 
 		#endregion Peon Change
+
+		MonoModHooks.DumpIL(Mod, il);
 	}
 }

@@ -1,1 +1,1 @@
-﻿[list][*]Ported to 1.4.4.x.[/list]
+﻿[list][*]Fixed the mod mysteriously not working.[/list]
